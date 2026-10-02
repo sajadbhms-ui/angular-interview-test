@@ -1,0 +1,65 @@
+<header class="topbar">
+  <span class="brand">Dashboard</span>
+  <button type="button" class="sign-out" (click)="signOut()">
+    <span aria-hidden="true">⇥</span> Sign Out
+  </button>
+</header>
+
+<main class="dashboard">
+  <p *ngIf="isLoading" class="status-message">Loading dashboard…</p>
+  <p *ngIf="errorMessage" class="status-message error">{{ errorMessage }}</p>
+
+  <ng-container *ngIf="dashboardData as data">
+    <h1>Overview</h1>
+
+    <section class="charts">
+      <article class="panel">
+        <h2 class="panel-title">Card Title</h2>
+        <div class="donut-area">
+          <div
+            class="donut-chart"
+            [style.background]="donutGradient"
+            role="img"
+            aria-label="Donut chart"
+          ></div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2 class="panel-title">Card Title</h2>
+        <div class="bar-chart" role="img" aria-label="Bar chart">
+          <div class="bar" *ngFor="let item of data.chartBar">
+            <div
+              class="bar-column"
+              [style.height.%]="getBarHeight(item.value)"
+              [title]="item.name + ': ' + item.value"
+            ></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <h2 class="list-heading">User List</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>User Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of data.tableUsers; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>@{{ user.username }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+</main>

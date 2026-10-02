@@ -1,0 +1,32 @@
+<main class="page">
+  <section class="sign-in-card">
+    <header class="card-header">Sign in to your dashboard</header>
+
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <input
+        type="email"
+        formControlName="username"
+        placeholder="Username"
+        autocomplete="username"
+      />
+
+      <input
+        type="password"
+        formControlName="password"
+        placeholder="Password"
+        autocomplete="current-password"
+      />
+
+      <button
+        type="submit"
+        [disabled]="signInForm.invalid || isSubmitting"
+      >
+        {{ isSubmitting ? 'SIGNING IN…' : 'SIGN IN' }}
+      </button>
+    </form>
+  </section>
+</main>
