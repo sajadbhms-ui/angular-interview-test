@@ -1,49 +1,52 @@
-<header class="topbar">
+<header class="topbar d-flex align-items-center justify-content-between">
   <span class="brand">Dashboard</span>
-  <button type="button" class="sign-out" (click)="signOut()">
-    <span aria-hidden="true">⇥</span> Sign Out
+  <button
+    type="button"
+    class="sign-out btn btn-link p-0"
+    (click)="signOut()"
+  >
+    &rarr; Sign Out
   </button>
 </header>
 
-<main class="dashboard">
-  <p *ngIf="isLoading" class="status-message">Loading dashboard…</p>
-  <p *ngIf="errorMessage" class="status-message error">{{ errorMessage }}</p>
+<main class="dashboard container">
+  <p *ngIf="isLoading" class="status-message alert alert-info">
+    Loading dashboard…
+  </p>
+  <p *ngIf="errorMessage" class="status-message alert alert-danger">
+    {{ errorMessage }}
+  </p>
 
   <ng-container *ngIf="dashboardData as data">
     <h1>Overview</h1>
 
     <section class="charts">
-      <article class="panel">
-        <h2 class="panel-title">Card Title</h2>
-        <div class="donut-area">
-          <div
-            class="donut-chart"
-            [style.background]="donutGradient"
-            role="img"
-            aria-label="Donut chart"
-          ></div>
-        </div>
+      <article class="panel card">
+        <h2 class="panel-title card-header">Card Title</h2>
+        <div
+          #donutChart
+          class="donut-area"
+          role="img"
+          aria-label="Donut chart"
+        ></div>
       </article>
 
-      <article class="panel">
-        <h2 class="panel-title">Card Title</h2>
-        <div class="bar-chart" role="img" aria-label="Bar chart">
-          <div class="bar" *ngFor="let item of data.chartBar">
-            <div
-              class="bar-column"
-              [style.height.%]="getBarHeight(item.value)"
-              [title]="item.name + ': ' + item.value"
-            ></div>
-          </div>
-        </div>
+      <article class="panel card">
+        <h2 class="panel-title card-header">Card Title</h2>
+        <div
+          #barChart
+          class="bar-chart"
+          role="img"
+          aria-label="Bar chart"
+        ></div>
       </article>
     </section>
 
     <h2 class="list-heading">User List</h2>
 
     <div class="table-wrap">
-      <table>
-        <thead>
+      <table class="table table-bordered text-center">
+        <thead class="thead-light">
           <tr>
             <th>#</th>
             <th>First Name</th>

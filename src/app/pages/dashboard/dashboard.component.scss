@@ -9,22 +9,24 @@
 .topbar {
   height: 60px;
   padding: 0 4.5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   background: #222;
   color: #888;
+    display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .brand {
   font-size: 18px;
 }
 
-.sign-out {
+.topbar .sign-out {
+  margin-left: auto;
   border: 0;
   background: transparent;
   color: #aaa;
   font: inherit;
+  text-decoration: none;
   cursor: pointer;
 
   &:hover {
@@ -34,7 +36,10 @@
 
 .dashboard {
   width: min(920px, calc(100% - 48px));
+  max-width: 920px;
   margin: 40px auto;
+  padding-right: 0;
+  padding-left: 0;
 }
 
 h1,
@@ -48,6 +53,7 @@ h1,
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 38px;
+  margin: 0;
 }
 
 .panel {
@@ -63,7 +69,10 @@ h1,
   box-sizing: border-box;
   margin: 0;
   padding: 15px 18px;
+  border: 0;
+  border-radius: 0;
   background: #f4f4f4;
+  color: #111;
   font-size: 16px;
   font-weight: 400;
 }
@@ -73,50 +82,23 @@ h1,
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 16px;
 }
 
-.donut-chart {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-
-  &::after {
-    position: absolute;
-    inset: 25%;
-    border-radius: 50%;
-    background: #fff;
-    content: '';
-  }
+.donut-area svg,
+.bar-chart svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .bar-chart {
   height: 200px;
-  margin: 40px 24px;
-  padding: 0 12px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px;
-  border-bottom: 2px solid #ddd;
-  border-left: 2px solid #ddd;
-}
-
-.bar {
-  height: 100%;
-  flex: 1;
-  display: flex;
-  align-items: flex-end;
-}
-
-.bar-column {
-  width: 100%;
-  min-height: 4px;
-  background: #a3a3a3;
+  margin: 24px 24px;
 }
 
 .list-heading {
-  margin-top: 36px;
+  margin-top: 20px;
   margin-bottom: 14px;
 }
 
@@ -124,68 +106,79 @@ h1,
   overflow-x: auto;
 }
 
-table {
-  width: 100%;
+.dashboard table {
   border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 1rem;
   background: #fff;
   font-size: 12px;
   text-align: center;
 }
 
-th,
-td {
+.dashboard table th,
+.dashboard table td {
   height: 49px;
   box-sizing: border-box;
   padding: 10px;
   border: 1px solid #bbb;
+  vertical-align: middle;
 }
 
-th {
+.dashboard table th:last-child,
+.dashboard table td:last-child {
+  padding-left: 50px;
+  text-align: left;
+}
+
+.dashboard table th {
   background: #f3f3f3;
   font-weight: 400;
 }
 
-th:first-child,
-td:first-child {
+.dashboard table th:first-child,
+.dashboard table td:first-child {
   width: 100px;
 }
 
-th:nth-child(2),
-td:nth-child(2),
-th:nth-child(3),
-td:nth-child(3) {
+.dashboard table th:nth-child(2),
+.dashboard table td:nth-child(2),
+.dashboard table th:nth-child(3),
+.dashboard table td:nth-child(3) {
   width: 150px;
 }
 
 .status-message {
-  padding: 16px;
+  margin-bottom: 16px;
 }
 
-.error {
-  color: #b00020;
-}
-
-@media (max-width: 700px) {
+@media (max-width: 767px) {
   .dashboard {
     width: calc(100% - 32px);
     margin: 28px auto;
   }
 
   .charts {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
 
   .panel {
     height: 280px;
+    margin-bottom: 16px;
   }
 
   .donut-area {
     height: 230px;
   }
 
-  .donut-chart {
-    width: 180px;
-    height: 180px;
+  .bar-chart {
+    height: 185px;
+    margin: 22px 18px;
+  }
+
+  .dashboard table th:first-child,
+  .dashboard table td:first-child {
+    width: 48px;
   }
 }
